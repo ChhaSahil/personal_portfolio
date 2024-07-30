@@ -44,7 +44,7 @@ def times_scrape(symbol):
     # options.add_argument('--incognito')
     # service = Service(executable_path=r"C:\Users\HP\OneDrive\Desktop\fin_dash\chromedriver-win64\chromedriver.exe")
 
-    driver = webdriver.Chrome(options = options)
+    driver = get_driver()
     driver.get('https://economictimes.indiatimes.com')
     WebDriverWait(driver, 20).until(
             EC.presence_of_element_located((By.CLASS_NAME, 'inputBox'))
@@ -99,7 +99,7 @@ def google_scrape(symbol):
     # options.add_argument('--incognito')
     # service = Service(executable_path=r"C:\Users\HP\OneDrive\Desktop\fin_dash\chromedriver-win64\chromedriver.exe")
 
-    driver = webdriver.Chrome(options = options)
+    driver = get_driver()
     driver.get('https://www.google.com/')
     # searchBox = driver.find_element(By.CLASS_NAME,'gLFyf')
     # searchBox.send_keys(f'{symbol} latest news')
