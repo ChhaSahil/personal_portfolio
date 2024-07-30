@@ -10,8 +10,10 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
+import chromedriver_autoinstaller
 import time
 
+chromedriver_autoinstaller.install()
 def times_scrape(symbol):
     symbol = symbol.replace('.NS','')
     options = webdriver.ChromeOptions()
@@ -20,9 +22,9 @@ def times_scrape(symbol):
     options.add_experimental_option('detach', True)
     options.add_argument("--log-level=1")
     options.add_argument('--incognito')
-    service = Service(executable_path=r"C:\Users\HP\OneDrive\Desktop\fin_dash\chromedriver-win64\chromedriver.exe")
+    # service = Service(executable_path=r"C:\Users\HP\OneDrive\Desktop\fin_dash\chromedriver-win64\chromedriver.exe")
 
-    driver = webdriver.Chrome(service = service, options = options)
+    driver = webdriver.Chrome(options = options)
     driver.get('https://economictimes.indiatimes.com')
     WebDriverWait(driver, 20).until(
             EC.presence_of_element_located((By.CLASS_NAME, 'inputBox'))
@@ -75,16 +77,21 @@ def google_scrape(symbol):
     options.add_experimental_option('detach', True)
     options.add_argument("--log-level=1")
     options.add_argument('--incognito')
-    service = Service(executable_path=r"C:\Users\HP\OneDrive\Desktop\fin_dash\chromedriver-win64\chromedriver.exe")
+    # service = Service(executable_path=r"C:\Users\HP\OneDrive\Desktop\fin_dash\chromedriver-win64\chromedriver.exe")
 
-    driver = webdriver.Chrome(service = service, options = options)
+    driver = webdriver.Chrome(options = options)
     driver.get('https://www.google.com/')
+    # searchBox = driver.find_element(By.CLASS_NAME,'gLFyf')
+    # searchBox.send_keys(f'{symbol} latest news')
+    # searchBox.send_keys(Keys.RETURN)
+    # time.sleep(3)
     searchBox = driver.find_element(By.CLASS_NAME,'gLFyf')
-    searchBox.send_keys(f'{symbol} latest news')
+    searchBox.send_keys('Power grid latest news')
     searchBox.send_keys(Keys.RETURN)
     page_source = driver.page_source
     soup = BeautifulSoup(page_source,'lxml')
     top_stories = soup.find_all('a',class_ = 'WlydOe')
+    print(top_stories)
     news_articles = defaultdict(list)
     for i in range(len(top_stories)):
         news = top_stories[i].text

@@ -12,7 +12,7 @@ load_dotenv()
 import os
 import time
 from datetime import datetime
-import personal_portfolio.scrap as scrap
+import scrap
 
 
 risk_free_rate = 0.07
@@ -391,7 +391,8 @@ with st.sidebar:
         with col71:
             metric(label = 'EPS',value = round(info[0]['EPS'],2))
         with col72:
-            metric(label = 'Profit Margin',value = f'{round(info[0]['ProfitMargin']*100,2)}%')
+            pMargin = round(info[0]['ProfitMargin']*100,2)
+            metric(label = 'Profit Margin',value = f"{pMargin}%")
         col81,col82 = st.columns(2)
         with col81:
             metric(label = 'Book Value',value = round(info[0]['BookValue'],2))
