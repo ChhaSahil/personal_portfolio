@@ -13,15 +13,35 @@ from selenium.webdriver.support import expected_conditions as EC
 import chromedriver_autoinstaller
 import time
 
-chromedriver_autoinstaller.install()
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.core.os_manager import ChromeType
+import streamlit as st
+
+@st.cache_resource
+def get_driver():
+    return webdriver.Chrome(
+        service=Service(
+            ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
+        ),
+        options=options,
+    )
+
+options = Options()
+options.add_argument("--disable-gpu")
+options.add_argument("--headless")
+
+# chromedriver_autoinstaller.install()
 def times_scrape(symbol):
-    symbol = symbol.replace('.NS','')
-    options = webdriver.ChromeOptions()
-    options.add_argument('--ignore-certificate-errors')
-    options.add_argument("--headless")
-    options.add_experimental_option('detach', True)
-    options.add_argument("--log-level=1")
-    options.add_argument('--incognito')
+    # symbol = symbol.replace('.NS','')
+    # options = webdriver.ChromeOptions()
+    # options.add_argument('--ignore-certificate-errors')
+    # options.add_argument("--headless")
+    # options.add_experimental_option('detach', True)
+    # options.add_argument("--log-level=1")
+    # options.add_argument('--incognito')
     # service = Service(executable_path=r"C:\Users\HP\OneDrive\Desktop\fin_dash\chromedriver-win64\chromedriver.exe")
 
     driver = webdriver.Chrome(options = options)
@@ -70,13 +90,13 @@ def times_scrape(symbol):
 
 def google_scrape(symbol):
     symbol = symbol.replace('.NS','')
-    options = webdriver.ChromeOptions
-    options = webdriver.ChromeOptions()
-    options.add_argument('--ignore-certificate-errors')
-    options.add_argument("--headless")
-    options.add_experimental_option('detach', True)
-    options.add_argument("--log-level=1")
-    options.add_argument('--incognito')
+    # options = webdriver.ChromeOptions
+    # options = webdriver.ChromeOptions()
+    # options.add_argument('--ignore-certificate-errors')
+    # options.add_argument("--headless")
+    # options.add_experimental_option('detach', True)
+    # options.add_argument("--log-level=1")
+    # options.add_argument('--incognito')
     # service = Service(executable_path=r"C:\Users\HP\OneDrive\Desktop\fin_dash\chromedriver-win64\chromedriver.exe")
 
     driver = webdriver.Chrome(options = options)
