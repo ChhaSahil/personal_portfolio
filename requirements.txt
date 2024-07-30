@@ -8,3 +8,4 @@ plotly
 bs4
 selenium
 chromedriver_autoinstaller
+dotenv
