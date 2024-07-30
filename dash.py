@@ -403,12 +403,14 @@ with st.sidebar:
             if info[0]['DividendRate']=='NA' or type(info[0]['DividendRate'])==str:
                 metric(label = 'Dividend Rate',value = info[0]['DividendRate'])
             else:
-                metric(label = 'Dividend Rate',value = f'{round(info[0]['DividendRate'],2)}%')
+                drate = round(info[0]['DividendRate'],2)
+                metric(label = 'Dividend Rate',value = f'{drate}%')
         with col92:
             if info[0]['Last_Dividend']=='NA' or type(info[0]['Last_Dividend'])==str:
                 metric(label = 'Last Dividend',value = info[0]['Last_Dividend'])
             else:
-                metric(label = 'Last Dividend', value = f'₹{round(info[0]['Last_Dividend'],2)}')
+                ldividend = round(info[0]['Last_Dividend'],2)
+                metric(label = 'Last Dividend', value = f'₹{ldividend}')
         
         metric(label = 'Last Dividend Date',value = info[0]['Last_Dividend_Date'])
         
