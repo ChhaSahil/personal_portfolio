@@ -20,18 +20,20 @@ from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.core.os_manager import ChromeType
 import streamlit as st
 from webdriver_manager.core.os_manager import OperationSystemManager
+import os
 
 @st.cache_resource
 def get_driver():
     return webdriver.Chrome(
         service=Service(
-            ChromeDriverManager(url = 'https://storage.googleapis.com/chrome-for-testing-public/127.0.6533.88/win64/chromedriver-win64.zip')
+            ChromeDriverManager().install()
         ),
         options=options,
     )
 
 options = Options()
 options.add_argument("--disable-gpu")
+options.add_argument("--no-sandbox")
 options.add_argument("--headless")
 
 # chromedriver_autoinstaller.install()
