@@ -19,12 +19,13 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.core.os_manager import ChromeType
 import streamlit as st
+from webdriver_manager.core.os_manager import OperationSystemManager
 
 @st.cache_resource
 def get_driver():
     return webdriver.Chrome(
         service=Service(
-            ChromeDriverManager(driver_version="127.0.6533.88").install()
+            ChromeDriverManager(os_system_manager=OperationSystemManager(os_type="win64"),driver_version="127.0.6533.88").install()
         ),
         options=options,
     )
