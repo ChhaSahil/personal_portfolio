@@ -25,7 +25,7 @@ from webdriver_manager.core.os_manager import OperationSystemManager
 def get_driver():
     return webdriver.Chrome(
         service=Service(
-            ChromeDriverManager(url = 'https://github.com/ChhaSahil/personal_portfolio/blob/main/chromedriver-win64/chromedriver.exe').install()
+            ChromeDriverManager(url = 'https://storage.googleapis.com/chrome-for-testing-public/127.0.6533.88/win64/chromedriver-win64.zip').install()
         ),
         options=options,
     )
