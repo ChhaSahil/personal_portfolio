@@ -24,7 +24,7 @@ import streamlit as st
 def get_driver():
     return webdriver.Chrome(
         service=Service(
-            ChromeDriverManager().install()
+            ChromeDriverManager(driver_version="127.0.6533.88").install()
         ),
         options=options,
     )
